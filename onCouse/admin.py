@@ -22,8 +22,8 @@ class ActivityAdmin(admin.ModelAdmin) :
     ]
 
     COLORDICT = {
-        'AV' : 'red',
-        'UV' : 'green',
+        'AV' : 'green',
+        'UV' : 'red',
     }
     save_as = True
 
