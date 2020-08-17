@@ -1,0 +1,28 @@
+<h1>{{ title }}</h1>
+{% if editActivity %}
+    <form method="post" action="/?editId={{ editActivity.id }}">
+        {% csrf_token %}
+        {{ activityForm.as_p }}
+        <button type="submit">UPDATE</button>
+        <button type="submit" name="isDelete" value="True">Delete</button>
+    </form>
+{% else %}
+    <form method="post" action="/">
+        {% csrf_token %}
+        {{ activityForm.as_p }}
+        <button type="submit">ADD</button>
+    </form>
+{% endif %}
+<ul>
+    {% for act in activities %}
+        <li><a href="/?editId={{ act.id }}">
+            {{ act.activity_name }} - {{ act.activity_type }}
+        </a>
+            <ul>
+                {% for student in act.participant.all %}
+                    <li>{{ student.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
